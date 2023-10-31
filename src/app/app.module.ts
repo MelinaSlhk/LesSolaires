@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageProduitComponent } from './pages/page-produit/page-produit.component';
@@ -14,13 +15,16 @@ import { PageErreur404Component } from './pages/page-erreur404/page-erreur404.co
     PageProduitComponent,
     PageConnexionComponent,
     PageAjouterUnProduitComponent,
-    PageErreur404Component
+    PageErreur404Component,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
