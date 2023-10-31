@@ -8,6 +8,7 @@ import { PageProduitComponent } from './pages/page-produit/page-produit.componen
 import { PageConnexionComponent } from './pages/page-connexion/page-connexion.component';
 import { PageAjouterUnProduitComponent } from './pages/page-ajouter-un-produit/page-ajouter-un-produit.component';
 import { PageErreur404Component } from './pages/page-erreur404/page-erreur404.component';
+import { BarreDeNavigationComponent } from './components/barre-de-navigation/barre-de-navigation.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PageErreur404Component } from './pages/page-erreur404/page-erreur404.co
     PageConnexionComponent,
     PageAjouterUnProduitComponent,
     PageErreur404Component,
+    BarreDeNavigationComponent,
   ],
   imports: [
     BrowserModule,

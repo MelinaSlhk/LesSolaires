@@ -1,0 +1,10 @@
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+            <div class="container">
+                <a class="navbar-brand text-light" [routerLink]="'/produit'">Les Solaires</a>
+                <!-- Si l'utilisateur n'est pas connecté, afficher le bouton "Connexion" -->
+                <button *ngIf="!estConnecte" [routerLink]="'/connexion'">Connexion</button>
+                
+                <!-- Si l'utilisateur est connecté, afficher le bouton "Déconnexion" -->
+                <button *ngIf="estConnecte" (click)="seDeconnecter()">Déconnexion</button>
+            </div>
+        </nav>

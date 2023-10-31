@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produit } from '../models/produit';
 
@@ -8,6 +8,15 @@ import { Produit } from '../models/produit';
 })
 export class ProduitsService {
   constructor(private http: HttpClient) {}
+
+  private getHttpOptions() {
+    const token = localStorage.getItem('accesstoken');
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+  }
 
   getProduits(): Observable<Produit[]> {
     return this.http.get<Produit[]>('http://localhost:3000/api/produit');
@@ -19,7 +28,7 @@ export class ProduitsService {
 
   deleteProduit(produitId: number): Observable<Produit> {
     const url = `http://localhost:3000/api/produit/${produitId}`;
-    return this.http.delete<Produit>(url);
+    return this.http.delete<Produit>(url,this.getHttpOptions());
   }
 
   updateProduit(
@@ -27,11 +36,11 @@ export class ProduitsService {
     updateProduit: Produit
   ): Observable<Produit> {
     const url = `http://localhost:3000/api/produit/${produitId}`;
-    return this.http.patch<Produit>(url, updateProduit);
+    return this.http.patch<Produit>(url, updateProduit,this.getHttpOptions());
   }
 
   ajouterProduit(produit: Produit): Observable<Produit> {
     const url = `http://localhost:3000/api/produit`;
-    return this.http.post<Produit>(url, produit);
+    return this.http.post<Produit>(url, produit,this.getHttpOptions())
   }
 }

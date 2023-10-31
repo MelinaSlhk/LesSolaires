@@ -1,1 +1,42 @@
-<p>page-connexion works!</p>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12">
+            <div class="card w-75 card mt-4 mb-4 mx-auto">
+                <div class="card-header text-center">Vous avez déjà un compte ?
+                    <h5>CONNECTEZ-VOUS</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="connexionForm" (submit)="connexion()">
+                        <div class="form-group mt-2">
+                            <label for="email"> Votre email 📧:</label>
+                            <input type="email" class="form-control" id="email" formControlName="mail" required
+                                formControlName="email" />
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="password">Votre mot de passe:</label>
+                            <input type="password" class="form-control" id="password" placeholder="••••••••"
+                                formControlName="password" required formControlName="motdepasse">
+                        </div>
+
+                        <div class="form-group form-check mt-3">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">Se souvenir de moi</label>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary mt-5" [disabled]="!connexionForm.valid">
+                                Connectez-vous à votre compte
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <div class="text-sm font-medium text-muted mt-2">
+                                Pas enregistré ? <a href="#" class="text-primary" [routerLink]="'/inscription'">Créer un
+                                    compte</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

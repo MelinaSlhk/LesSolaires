@@ -4,12 +4,13 @@ import { PageProduitComponent } from './pages/page-produit/page-produit.componen
 import { PageConnexionComponent } from './pages/page-connexion/page-connexion.component';
 import { PageAjouterUnProduitComponent } from './pages/page-ajouter-un-produit/page-ajouter-un-produit.component';
 import { PageErreur404Component } from './pages/page-erreur404/page-erreur404.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'produit', pathMatch: 'full' },
   { path: 'connexion', component: PageConnexionComponent },
   { path: 'produit', component: PageProduitComponent },
-  { path: 'ajouter-un-produit', component: PageAjouterUnProduitComponent },
+  { path: 'ajouter-un-produit', component: PageAjouterUnProduitComponent, canActivate: [authGuard] },
   { path: '**', component: PageErreur404Component },
 ];
 

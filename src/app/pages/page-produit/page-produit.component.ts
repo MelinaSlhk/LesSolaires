@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Produit } from 'src/app/models/produit';
 import { ProduitsService } from 'src/app/services/produits.service';
 
@@ -8,13 +8,27 @@ import { ProduitsService } from 'src/app/services/produits.service';
   styleUrls: ['./page-produit.component.css'],
 })
 export class PageProduitComponent {
+ 
+  estConnecte: boolean = false;
   produits!: Produit[];
   isEditing = false;
   produitId!: number;
 
+
+
   constructor(private produitService: ProduitsService) {}
 
   ngOnInit(): void {
+    // Vérification si un accesstoken est présent dans le localstorage
+    const accessToken = localStorage.getItem('accesstoken');
+    if (accessToken) {
+      // Si oui, on est connecté
+      this.estConnecte = true;
+    } else {
+      // Si non, on n'est pas connecté
+      this.estConnecte = false;
+    }
+    
     this.produitService.getProduits().subscribe({
       next: (response) => {
         {
@@ -45,7 +59,7 @@ export class PageProduitComponent {
     nom: string,
     prix: number,
     quantite: number,
-    id_categorie: number,
+    id_categorie: number
   ) {
     this.isEditing = false;
     this.produitId = id;

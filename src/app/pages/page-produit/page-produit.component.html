@@ -1,5 +1,6 @@
+<app-barre-de-navigation></app-barre-de-navigation>
 <div class="text-center mt-3 mb-5">
-    <button type="button" class="btn btn-outline-success btn-lg custom-button" [routerLink]="'/ajouter-un-produit'">Ajouter
+    <button *ngIf="estConnecte" type="button" class="btn btn-outline-success btn-lg custom-button" [routerLink]="'/ajouter-un-produit'">Ajouter
         une solaire</button>
 </div>
 
@@ -10,45 +11,45 @@
             <th>Prix</th>
             <th>Quantité</th>
             <th>Catégorie</th>
-            <th>Action</th>
+            <th></th>
         </tr>
     </thead>
 
     <tbody>
         <tr *ngFor="let produit of produits" [id]="produit.id">
             <td>
-                <input class="input-field" *ngIf="isEditing" [(ngModel)]="produit.nom" type="text" />
+                <input class="input-field" *ngIf="isEditing && estConnecte" [(ngModel)]="produit.nom" type="text" />
 
                 {{ !isEditing ? produit.nom : "" }}
             </td>
 
             <td>
-                <input class="input-field" *ngIf="isEditing" [(ngModel)]="produit.prix" type="text" />
+                <input class="input-field" *ngIf="isEditing && estConnecte" [(ngModel)]="produit.prix" type="text" />
 
                 {{ !isEditing ? produit.prix : "" }} 
             </td>
 
             <td>
-                <input class="input-field" *ngIf="isEditing" [(ngModel)]="produit.quantite" type="text" />
+                <input class="input-field" *ngIf="isEditing && estConnecte" [(ngModel)]="produit.quantite" type="text" />
 
                 {{ !isEditing ? produit.quantite : "" }}
             </td>
 
             <td>
-                <input class="input-field" *ngIf="isEditing" [(ngModel)]="produit.id_categorie" type="text" />
+                <input class="input-field" *ngIf="isEditing && estConnecte" [(ngModel)]="produit.id_categorie" type="text" />
             
                 {{ !isEditing ? produit.id_categorie : "" }}
             </td>
 
 
             <td>
-                <button class="edit-btn" (click)="modifierProduit()">Modifier</button>
+                <button *ngIf="estConnecte" class="edit-btn" (click)="modifierProduit()">Modifier</button>
 
-                <button class="delete-btn" (click)="produit.id !== undefined ? supprimerProduit(produit.id) : null">
+                <button *ngIf="estConnecte" class="delete-btn" (click)="produit.id !== undefined ? supprimerProduit(produit.id) : null">
                     Supprimer
                 </button>
 
-                <button class="confirm-btn" *ngIf="isEditing"
+                <button class="confirm-btn" *ngIf="isEditing && estConnecte"
                     (click)="produit.id !== undefined ? confirmerChangements(produit.id, produit.nom, produit.prix, produit.quantite, produit.id_categorie) : null">
                     Confirmer
                 </button>
