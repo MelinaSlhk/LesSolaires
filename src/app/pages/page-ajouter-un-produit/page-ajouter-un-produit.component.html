@@ -1,1 +1,54 @@
-<p>page-ajouter-un-produit works!</p>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Ajouter une solaire</h1>
+                    </div>
+                    <div class="card-body">
+                        <form (ngSubmit)="ajouterProduit()" [formGroup]="ajouterProduitForm"
+                            enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="nom" class="form-label mb-0">Nom</label>
+                                <input type="text" class="form-control" id="nom" placeholder="Entrez le nom"
+                                    formControlName="nom" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="prix" class="form-label mb-0">Prix</label>
+                                <input type="text" class="form-control" id="prix"
+                                    placeholder="Entrez le prix" formControlName="prix" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="quantite" class="form-label mb-0">Quantité</label>
+                                <input type="text" class="form-control" id="quantite" placeholder="Entrez les quantités"
+                                    formControlName="quantite" required>
+                            </div>
+                            <!-- <div *ngIf="categoriesToDisplay">
+                                <select class="form-select" formControlName="categorie" id="categorie" aria-label="Default select example">
+                                <label for="quantite" class="form-label mb-0">Quantité</label>
+                                <option selected value="">Catégorie</option>
+                                <option *ngFor="let cat of categoriesToDisplay" value="{{cat.id}}"> {{cat.nom}} </option>
+                                </select>
+                            </div> -->
+                            
+                            <div class="form-group">
+                                <label for="categorie" class="form-label">Catégorie</label>
+                            </div>
+                            <div *ngIf="categoriesToDisplay" class="form-group">
+                                <select class="form-select" formControlName="categorie" id="categorie" aria-label="Catégorie">
+                                    <option value="">Sélectionnez une catégorie</option>
+                                    <option *ngFor="let cat of categoriesToDisplay" value="{{cat.id}}">{{ cat.nom }}</option>
+                                </select>
+                            </div>
+                            
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary w-auto custom-button">Ajouter cette solaire</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
